@@ -79,10 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() async {
-    await FirebaseAnalytics.instance.logSelectContent(
-      contentType: "image",
-      itemId: "itemId",
-    );
+
 
     generateGPT3Response("Generate a birthday message for my friend");
     setState(() {
