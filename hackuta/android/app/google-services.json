@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500395975641",
+    "project_id": "hackuta2023-a2672",
+    "storage_bucket": "hackuta2023-a2672.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500395975641:android:590189a126222ceff72fc8",
+        "android_client_info": {
+          "package_name": "com.ram.hack_uta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5KSP2tk8RYWHOjnT09jw0nzaCnX1PPP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAfsR73qSmaunwEe1U-PQzaBJdNYvi5lss</string>
+	<key>GCM_SENDER_ID</key>
+	<string>500395975641</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.hackuta</string>
+	<key>PROJECT_ID</key>
+	<string>hackuta2023-a2672</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hackuta2023-a2672.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:500395975641:ios:7ba86375a7a8e558f72fc8</string>
+</dict>
+</plist>
