@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hackuta/firebase_options.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
+import 'api/openai/open_ai_api.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -81,6 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
       contentType: "image",
       itemId: "itemId",
     );
+
+    generateGPT3Response("Generate a birthday message for my friend");
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
