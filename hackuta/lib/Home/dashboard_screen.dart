@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../addfirends/friends_card.dart';
 import '../router/route_names.dart';
 import '../strings/StringConstants.dart';
 import '../util/AppPreference.dart';
+import '../util/CollectionConstants.dart';
 import '../util/greetings.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -14,6 +18,24 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  List<dynamic> listOfFriends = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getListOfFriends();
+  }
+  void getListOfFriends() async {
+    final DocumentReference documentReference = FirebaseFirestore.instance
+        .collection(CollectionConstants.FRIENDS)
+        .doc(FirebaseAuth.instance.currentUser?.uid);
+    final DocumentSnapshot documentSnapshot = await documentReference.get();
+    if (documentSnapshot.exists && documentSnapshot.data() != null) {
+      setState(() {
+        listOfFriends = documentSnapshot["listOfFriends"];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +52,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Container(
                   height: 150,
                   decoration: BoxDecoration(
-
                     color: Theme.of(context).primaryColor,
                   ),
                   child: Padding(
@@ -88,7 +109,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
               ]),
-
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "My Friends",
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(height: 10,),
+              ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: listOfFriends.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: FriendsCard(
+                      profileImage: listOfFriends[index]
+                      ["profileImage"],
+                      name: listOfFriends[index]["fName"],
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

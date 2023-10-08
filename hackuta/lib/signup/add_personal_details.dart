@@ -6,6 +6,7 @@ import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:intl/intl.dart';
 import 'package:philia/model/UserInfo.dart';
+import 'package:philia/util/my_toast.dart';
 
 import '../../util/AppPreference.dart';
 import '../strings/StringConstants.dart';
@@ -157,22 +158,31 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
           onPressed: () {
             saveToUserTable();
           },
-          child: const Text('Register'),
+          child: const Text('Save'),
         )));
 
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start, children: widgets);
   }
 
-  void saveToUserTable() async{
+  void saveToUserTable() async {
     Users user = Users(
-      dob: leaveStartDateText,
-      emailId: emailIDController.text,
-      fName:fNameController.text ,
-      lName: lNameController.text,
-      mobileNumber: mobileNumberController.text
-    );
+        dob: leaveStartDateText,
+        emailId: emailIDController.text,
+        fName: fNameController.text,
+        lName: lNameController.text,
+        mobileNumber: mobileNumberController.text);
 
-    db.collection("Users").doc(FirebaseAuth.instance.currentUser?.uid).set(user.toMap());
+    db
+        .collection("Users")
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .set(user.toMap())
+      .then((result) {
+        Navigator.pop(context);
+      }).catchError((error) {
+        showToast("Something went wrong", context);
+
+        Navigator.pop(context);
+      });
   }
 }

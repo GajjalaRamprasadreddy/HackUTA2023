@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 Future<String> generateGPT3Response(String inputText) async {
   print(inputText);
-  final apiKey = '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';
+  final apiKey = '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';
   final apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   final response = await http.post(

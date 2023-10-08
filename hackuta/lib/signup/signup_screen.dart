@@ -230,7 +230,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void _moveToHome() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.of(context).pushReplacementNamed(homeRoute);
+      Navigator.of(context).pushReplacementNamed(dashboardRoute);
     });
   }
 

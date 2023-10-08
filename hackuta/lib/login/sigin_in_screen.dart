@@ -188,8 +188,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void _moveToHome() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.pop(context);
-      Navigator.of(context).pushReplacementNamed(homeRoute);
+      Navigator.pushReplacementNamed(context, dashboardRoute);
     });
   }
 

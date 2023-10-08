@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:philia/Home/home_screen.dart';
+import 'package:philia/addfirends/addfriends_screen.dart';
 import 'package:philia/login/sigin_in_screen.dart';
 import 'package:philia/router/StringExtension.dart';
 import 'package:philia/router/route_names.dart';
@@ -26,8 +26,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(SignInScreen(), settings);
     case signupRoute:
       return _getPageRoute(SignupScreen(), settings);
-    case homeRoute:
-      return _getPageRoute(HomeScreen(), settings);
+
     case create_post_route:
       return _getPageRoute(CreatePostScreen(), settings);
     case addPersonalDetails:
@@ -38,6 +37,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           settings);
     case dashboardRoute:
       return _getPageRoute(DashboardBaseScreen(), settings);
+
+    case addFriendsRoute:
+      return _getPageRoute(AddFriends(), settings);
     default:
       return _getPageRoute(SplashScreen(), settings);
   }

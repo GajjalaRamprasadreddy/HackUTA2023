@@ -43,24 +43,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            InkWell(
-                              onTap: () {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) {
-                                  Navigator.pop(context);
-                                });
-                              },
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(Icons.navigate_before_sharp),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Create Post",
-                                style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
+                            Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Create Post",
+                                  style: const TextStyle(
+                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                           ],
@@ -99,7 +89,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             aspectRatio: 1,
                             child: Image.file(
                               imageFile,
-                              fit: BoxFit.fitHeight, // use this
+                              fit: BoxFit.cover, // use this
                             ),
                           ),
                         ),
@@ -116,7 +106,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            child: AspectRatio(
+                            child: const AspectRatio(
                               aspectRatio: 1,
                               child: Image(
                                 image: NetworkImage(
@@ -132,7 +122,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       height: 8,
                     ),
                     Text(
-                      "Addition prompt",
+                      "Add prompt",
                       style:
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                     ),
@@ -160,16 +150,16 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           onPressed: () async {
                             InternetChecks.showLoadingCircle(context);
                             Future<dynamic> future = generateGPT3Response(
-                                "Generate  Birthday wishes for my friend whose name is Prudhvi and mention how i miss him and recall few of he childhood memories this generated text is shared to him "+promptController.text);
+                                promptController.text);
                             future
                                 .then((value) => {_handleResponseData(value)});
                           },
                           child: const Text('Generate using Ai'),
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
-                    Text(
+                    const Text(
                       "Final message",
                       style:
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 16),

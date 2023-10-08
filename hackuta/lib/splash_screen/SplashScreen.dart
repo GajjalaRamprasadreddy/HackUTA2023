@@ -48,26 +48,36 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void movetoSignInScreen() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.pushNamed(context, signinRoute);
+      Navigator.pushReplacementNamed(context, signinRoute);
     });
   }
 
-    void _moveToHomeScreen() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Navigator.pushReplacementNamed(context, dashboardRoute);
-      });
-    }
+  void _moveToHomeScreen() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.pushReplacementNamed(context, dashboardRoute);
+    });
+  }
 
   void _addDetails() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.of(context).pushNamed(addPersonalDetails);
+      Navigator.of(context).pushReplacementNamed(addPersonalDetails);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: MyLoadingWidget()),
+      body: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Image.asset(
+              'assets/images/splash.gif'
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
