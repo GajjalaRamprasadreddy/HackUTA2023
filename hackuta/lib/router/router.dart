@@ -6,8 +6,13 @@ import 'package:philia/Home/home_screen.dart';
 import 'package:philia/login/sigin_in_screen.dart';
 import 'package:philia/router/StringExtension.dart';
 import 'package:philia/router/route_names.dart';
+import 'package:philia/signup/add_personal_details.dart';
 import 'package:philia/signup/signup_screen.dart';
+import 'package:philia/wishes/create_post_screen.dart';
+import 'package:philia/wishes/model/share_post_data.dart';
+import 'package:philia/wishes/share_post_screen.dart';
 
+import '../Home/DashboardBaseScreen.dart';
 import '../splash_screen/SplashScreen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -23,6 +28,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(SignupScreen(), settings);
     case homeRoute:
       return _getPageRoute(HomeScreen(), settings);
+    case create_post_route:
+      return _getPageRoute(CreatePostScreen(), settings);
+    case addPersonalDetails:
+      return _getPageRoute(AddPersonalDetails(), settings);
+    case sharePostScreen:
+      return _getPageRoute(
+          SharePostScreen(sharedPostData: settings.arguments as SharedPostData),
+          settings);
+    case dashboardRoute:
+      return _getPageRoute(DashboardBaseScreen(), settings);
     default:
       return _getPageRoute(SplashScreen(), settings);
   }

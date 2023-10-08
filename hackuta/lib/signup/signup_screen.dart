@@ -177,11 +177,21 @@ class _SignupScreenState extends State<SignupScreen> {
                       width: double.infinity, // Full-width button
                       child: ElevatedButton(
                         onPressed: () async {
-                          InternetChecks.showLoadingCircle(context);
+                          if(!validateEmail(emailController.text)){
+                            showToast("Please enter correct email ", context);
+                            return;
+                          }
+                          if(passwordController.text.isEmpty){
+                            showToast("Please enter valid password ", context);
+                            return;
+                          }
+                          if(passwordController.text != confirmPasswordController.text){
+                            showToast("Passwords doesn't match, please check ", context);
+                            return;
+                          }
                           if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
                             signUpApiCall(emailController.text,passwordController.text);
                           }else{
-                            InternetChecks.closeLoadingProgress(context);
                             showToast("Some of fields seems to be wrong, Please check!", context);
                           }
                         },
@@ -197,6 +207,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void signUpApiCall(String email, String password) async {
+    InternetChecks.showLoadingCircle(context);
     try {
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);

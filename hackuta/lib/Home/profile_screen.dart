@@ -12,14 +12,14 @@ import '../strings/StringConstants.dart';
 import '../util/DatePickerWidget.dart';
 import '../util/MyTextFieldWidget.dart';
 
-class AddPersonalDetails extends StatefulWidget {
-  const AddPersonalDetails({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<AddPersonalDetails> createState() => _AddPersonalDetailsState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _AddPersonalDetailsState extends State<AddPersonalDetails> {
+class _ProfileScreenState extends State<ProfileScreen> {
   List<Widget> widgets = List.empty(growable: true);
   final fNameController = TextEditingController();
   final fNameNode = FocusNode();
@@ -36,11 +36,17 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     setState(() {
-      leaveStartDateText = "";
+
+      fNameController.text = AppPreference().user?.fName ?? "";
+      lNameController.text = AppPreference().user?.lName ?? "";
+      emailIDController.text = AppPreference().user?.emailId ?? "";
+      mobileNumberController.text = AppPreference().user?.mobileNumber ?? "";
+      leaveStartDateText = AppPreference().user?.dob ?? "";
     });
+
   }
 
   @override
@@ -150,15 +156,7 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
     widgets.add(const SizedBox(
       height: 15,
     ));
-    widgets.add(SizedBox(
-        height: 50,
-        width: double.infinity, // Full-width button
-        child: ElevatedButton(
-          onPressed: () {
-            saveToUserTable();
-          },
-          child: const Text('Register'),
-        )));
+
 
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start, children: widgets);
@@ -166,11 +164,11 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
 
   void saveToUserTable() async{
     Users user = Users(
-      dob: leaveStartDateText,
-      emailId: emailIDController.text,
-      fName:fNameController.text ,
-      lName: lNameController.text,
-      mobileNumber: mobileNumberController.text
+        dob: leaveStartDateText,
+        emailId: emailIDController.text,
+        fName:fNameController.text ,
+        lName: lNameController.text,
+        mobileNumber: mobileNumberController.text
     );
 
     db.collection("Users").doc(FirebaseAuth.instance.currentUser?.uid).set(user.toMap());
