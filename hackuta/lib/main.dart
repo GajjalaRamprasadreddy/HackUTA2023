@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: locator<NavigationService>().navigatorKey,
       initialRoute: splashRoute,
       onGenerateRoute: generateRoute,
+      navigatorObservers: [BotToastNavigatorObserver()],
       builder: (context, child) {
         child = LayoutTemplate(
           child: child!,

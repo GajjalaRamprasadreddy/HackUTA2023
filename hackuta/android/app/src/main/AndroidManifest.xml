@@ -3,6 +3,7 @@
     <application
         android:label="Philia"
         android:name="${applicationName}"
+        android:requestLegacyExternalStorage="true"
         android:icon="@drawable/philia_icon">
         <activity
             android:name=".MainActivity"
